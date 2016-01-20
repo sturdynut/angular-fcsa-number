@@ -1,4 +1,4 @@
-/*! angular-fcsa-number (version 1.5.3) 2014-10-17 */
+/*! angular-fcsa-number (version 1.5.3) 2016-01-20 */
 (function() {
   var fcsaNumberModule,
     __hasProp = {}.hasOwnProperty;
@@ -40,7 +40,7 @@
         if (maxDecimals > 0) {
           regexString = "^-?\\d*\\.?\\d{0," + maxDecimals + "}$";
         } else {
-          regexString = "^-?\\d*$";
+          regexString = "^[0-9]*$";
         }
         validRegex = new RegExp(regexString);
         return function(val) {

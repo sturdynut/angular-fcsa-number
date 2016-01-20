@@ -215,11 +215,27 @@
           });
           return expect(valid).toBe(true);
         });
-        return it('invalidates numbers with more decimals', function() {
+        it('invalidates numbers with more decimals', function() {
           var valid;
           valid = isValid({
             options: '{ maxDecimals: 2 }',
             val: '1.234'
+          });
+          return expect(valid).toBe(false);
+        });
+        it('validates numbers with 0 decimals', function() {
+          var valid;
+          valid = isValid({
+            options: '{ maxDecimals: 0 }',
+            val: '123'
+          });
+          return expect(valid).toBe(true);
+        });
+        return it('invalidates numbers with decimals', function() {
+          var valid;
+          valid = isValid({
+            options: '{ maxDecimals: 0 }',
+            val: '1.23'
           });
           return expect(valid).toBe(false);
         });

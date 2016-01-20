@@ -170,6 +170,18 @@ describe 'fcsaNumber', ->
           val: '1.234'
         expect(valid).toBe false
 
+      it 'validates numbers with 0 decimals', ->
+        valid = isValid
+          options: '{ maxDecimals: 0 }'
+          val: '123'
+        expect(valid).toBe true
+
+      it 'invalidates numbers with decimals', ->
+        valid = isValid
+          options: '{ maxDecimals: 0 }'
+          val: '1.23'
+        expect(valid).toBe false
+
     describe 'prepend', ->
       it 'prepends the value', ->
         $scope.model.number = 1000

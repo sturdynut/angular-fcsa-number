@@ -11,7 +11,7 @@ fcsaNumberModule.directive 'fcsaNumber',
             for own option, value of scope.$eval(scope.options)
                 options[option] = value
         options
-    
+
     isNumber = (val) ->
         !isNaN(parseFloat(val)) && isFinite(val)
 
@@ -30,11 +30,11 @@ fcsaNumberModule.directive 'fcsaNumber',
         if maxDecimals > 0
             regexString = "^-?\\d*\\.?\\d{0,#{maxDecimals}}$"
         else
-            regexString = "^-?\\d*$"
+            regexString = "^[0-9]*$"
         validRegex = new RegExp regexString
 
         (val) -> validRegex.test val
-        
+
     makeMaxNumber = (maxNumber) ->
         (val, number) -> number <= maxNumber
 
@@ -47,7 +47,7 @@ fcsaNumberModule.directive 'fcsaNumber',
 
     makeIsValid = (options) ->
         validations = []
-        
+
         if options.maxDecimals?
             validations.push makeMaxDecimals options.maxDecimals
         if options.max?
@@ -56,7 +56,7 @@ fcsaNumberModule.directive 'fcsaNumber',
             validations.push makeMinNumber options.min
         if options.maxDigits?
             validations.push makeMaxDigits options.maxDigits
-            
+
         (val) ->
             return false unless isNumber val
             return false if hasMultipleDecimals val
@@ -64,7 +64,7 @@ fcsaNumberModule.directive 'fcsaNumber',
             for i in [0...validations.length]
                 return false unless validations[i] val, number
             true
-        
+
     addCommasToInteger = (val) ->
         decimals = `val.indexOf('.') == -1 ? '' : val.replace(/^-?\d+(?=\.)/, '')`
         wholeNumbers = val.replace /(\.\d+)$/, ''
